@@ -112,3 +112,6 @@ documentation/
 # --- Local development tooling ----------------------------------------------
 # Vendored agent/design skills are kept out of the public repository.
 .opencode/
+
+# --- Local browser test configuration ---------------------------------------
+playwright.config.ts

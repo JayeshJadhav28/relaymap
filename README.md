@@ -335,7 +335,7 @@ relaymap/
 ├── documentation/                  # local-only implementation notes (git-ignored)
 ├── scripts/
 │   └── prepare-standalone.mjs      # copies static assets into the standalone build
-├── .opencode/                      # vendored design skill (CC BY 4.0; see its LICENSE and CITATION.cff)
+├── .opencode/                      # local-only design skill (git-ignored)
 ├── .dockerignore
 ├── .env.example
 ├── .gitignore
@@ -710,7 +710,6 @@ Released under the [MIT License](LICENSE).
 
 Copyright (c) 2026 Relay contributors.
 
-The vendored `.opencode/skills/unslop/` design skill is by Damir Sokolovsky
-("heydamir"), distributed under CC BY 4.0, and retains its own licence and
-citation files. See `.opencode/skills/unslop/LICENSE` and
-`.opencode/skills/unslop/CITATION.cff`.
+The local development tree also contains the Unslop design skill by Damir
+Sokolovsky ("heydamir"), used under CC BY 4.0. It is excluded from this
+repository and retains its own licence and citation files.

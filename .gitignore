@@ -108,3 +108,7 @@ AGENTS.md
 # Implementation and design notes are maintained locally and are not published
 # in this public repository.
 documentation/
+
+# --- Local development tooling ----------------------------------------------
+# Vendored agent/design skills are kept out of the public repository.
+.opencode/

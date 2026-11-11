@@ -1,0 +1,56 @@
+{
+  "name": "relay-knowledge-handover",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@grpc/grpc-js": "^1.14.7",
+      "glob": "^14.0.2",
+      "minimatch": "^11.0.1"
+    }
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "node scripts/prepare-standalone.mjs",
+    "start": "next start",
+    "start:standalone": "node scripts/prepare-standalone.mjs && node .next/standalone/server.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "5.2.2",
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.118.0",
+    "file-type": "22.3.0",
+    "firebase": "^13.2.0",
+    "firebase-admin": "^14.5.0",
+    "framer-motion": "14.9.0",
+    "lucide-react": "1.65.0",
+    "mammoth": "1.13.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-hook-form": "7.71.1",
+    "recharts": "3.7.0",
+    "unpdf": "1.9.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.19.15",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.2",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3",
+    "vitest": "4.1.5"
+  }
+}

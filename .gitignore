@@ -1,0 +1,110 @@
+# ---------------------------------------------------------------------------
+# RelayMap — repository ignore policy
+#
+# Secrets are never committed. Generated output, local tooling state and test
+# artefacts stay out of the repository. Source, tests, SQL migrations,
+# documentation, configuration and lockfiles must remain trackable.
+# ---------------------------------------------------------------------------
+
+# --- Secrets and environment files -----------------------------------------
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Firebase Admin SDK service-account keys (browser/Admin private credentials).
+**/*firebase-adminsdk*.json
+**/*service-account*.json
+**/*serviceaccount*.json
+**/serviceAccount*.json
+
+# Other local credential exports and key material.
+**/*credentials*.json
+**/*credential*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+*.der
+
+# --- Dependencies and package-manager state --------------------------------
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Build output and caches -----------------------------------------------
+.next/
+out/
+build/
+dist/
+coverage/
+.turbo/
+.vercel/
+.netlify/
+.cache/
+.eslintcache
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# --- Browser and test output -----------------------------------------------
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+playwright/.cache/
+.vitest/
+*.lcov
+
+# --- Supabase and Firebase local state -------------------------------------
+supabase/.temp/
+supabase/.branches/
+supabase/.storage/
+.supabase/
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+ui-debug.log
+firestore-debug.log
+database-debug.log
+pubsub-debug.log
+
+# --- Logs and temporary files ----------------------------------------------
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+
+# --- Operating-system and editor noise -------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Generated agent instructions -------------------------------------------
+# Next.js rewrites this file on `next dev`; it is not maintained by hand.
+AGENTS.md
+
+# --- Internal documentation -------------------------------------------------
+# Implementation and design notes are maintained locally and are not published
+# in this public repository.
+documentation/

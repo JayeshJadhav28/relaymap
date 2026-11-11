@@ -1,0 +1,26 @@
+node_modules
+.next
+.git
+.gitignore
+coverage
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Not needed to build or run the application image.
+.opencode
+documentation
+scripts
+supabase/tests
+tests
+.playwright
+test-results
+playwright-report
+
+# Editor and OS noise.
+.vscode
+.idea
+.DS_Store
+Thumbs.db

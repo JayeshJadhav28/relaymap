@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Link2 } from "lucide-react";
 import { getStore } from "@/lib/demo/store";
 import { ROLE_LABEL } from "@/lib/presentation";
+import { LogoMark } from "@/components/LogoMark";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +38,9 @@ export default function LandingPage() {
     <div className="landing-page">
       <header className="landing-nav">
         <Link href="/" className="brand">
-          <span className="brandmark">RM</span>
+          <span className="brandmark">
+            <LogoMark size={20} />
+          </span>
           relaymap
         </Link>
         <nav className="landing-links">
@@ -50,6 +53,9 @@ export default function LandingPage() {
       <main>
         <section className="landing-hero">
           <div>
+            <span className="landing-logo">
+              <LogoMark size={32} />
+            </span>
             <span className="eyebrow">
               <Link2 size={14} strokeWidth={1.5} aria-hidden="true" />
               Evidence-driven project continuity

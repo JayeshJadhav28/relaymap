@@ -567,6 +567,16 @@ migrations, deployment, operations, security and private storage.
 This README is the public technical summary. In a full development checkout, the
 local `documentation/production/` directory contains the detailed references.
 
+## User Impact
+
+Teams can use RELAYMAP as a persistent collaborative platform where project
+knowledge can be securely reviewed, transferred and acknowledged by incoming
+members. The synthetic demo runs without cloud credentials; the real workspace
+requires Firebase Authentication and Supabase PostgreSQL with row-level security.
+The production website lives at **https://ith.relaymap.io** (the internal `ith`
+subdomain). It serves both the demo (`RELAY_DEMO_MODE=true`) and the real user
+path (`/app`), each protected by verified Firebase ID tokens and RLS.
+
 ## Deployment
 
 The application ships as one Next.js standalone container. It needs Node.js 22,
@@ -610,8 +620,8 @@ Apply migrations with the Supabase CLI after linking the project, or with
 `psql` in filename order. Treat a hosted migration as a reviewed deployment
 step, not a build hook.
 
-No hosted deployment exists in this repository's verified state. No CI pipeline,
-deployment badge or public URL is claimed.
+A deployment exists at **https://ith.relaymap.io**; it has not been independently
+verified from this repository. No CI pipeline or deployment badge is claimed.
 
 ## Security and privacy
 

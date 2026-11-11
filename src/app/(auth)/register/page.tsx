@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AuthForm } from "@/components/AuthForm";
+import { LogoMark } from "@/components/LogoMark";
 
 export const dynamic = "force-dynamic";
 
@@ -8,7 +9,9 @@ export default function RegisterPage() {
     <div className="auth-page">
       <div className="auth-card">
         <Link href="/" className="brand">
-          <span className="brandmark">RM</span>
+          <span className="brandmark">
+            <LogoMark size={20} />
+          </span>
           relaymap
         </Link>
         <p className="eyebrow">Real workspace</p>

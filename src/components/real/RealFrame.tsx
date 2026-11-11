@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FolderOpen, LayoutGrid, LogOut, UserRound } from "lucide-react";
 import { useFirebaseAuth } from "@/lib/firebase/auth-provider";
+import { LogoMark } from "@/components/LogoMark";
 
 const LINKS = [
   { href: "/app", label: "Projects", icon: FolderOpen },
@@ -19,7 +20,9 @@ export function RealFrame({ children }: { children: React.ReactNode }) {
     <div className="real-shell">
       <header className="real-topbar">
         <Link href="/app" className="brand">
-          <span className="brandmark">RM</span>
+          <span className="brandmark">
+            <LogoMark size={20} />
+          </span>
           relaymap
         </Link>
         <span className="context-chip">Real workspace</span>

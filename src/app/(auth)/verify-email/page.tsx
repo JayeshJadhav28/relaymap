@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ensureSupabaseRole, firebaseErrorMessage } from "@/lib/firebase/auth";
 import { useFirebaseAuth } from "@/lib/firebase/auth-provider";
+import { LogoMark } from "@/components/LogoMark";
 
 export default function VerifyEmailPage() {
   const router = useRouter();
@@ -64,7 +65,9 @@ export default function VerifyEmailPage() {
     <div className="auth-page">
       <div className="auth-card">
         <Link href="/" className="brand">
-          <span className="brandmark">RM</span>
+          <span className="brandmark">
+            <LogoMark size={20} />
+          </span>
           relaymap
         </Link>
         <p className="eyebrow">Email verification</p>

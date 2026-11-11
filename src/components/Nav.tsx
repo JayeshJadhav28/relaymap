@@ -16,6 +16,7 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
+import { LogoMark } from "@/components/LogoMark";
 
 const GROUPS: {
   label: string;
@@ -68,7 +69,9 @@ export function Nav({ roleLabel }: { roleLabel: string }) {
       <aside className={`sidebar ${open ? "sidebar-open" : ""}`}>
         <div className="sidebar-brand">
           <Link href="/" className="brand" onClick={() => setOpen(false)}>
-            <span className="brandmark">RM</span>
+            <span className="brandmark">
+              <LogoMark size={20} />
+            </span>
             relaymap
           </Link>
           <span className="demo-chip">Synthetic demo</span>

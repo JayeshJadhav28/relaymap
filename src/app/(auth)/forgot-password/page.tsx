@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 import { firebaseErrorMessage } from "@/lib/firebase/auth";
 import { sendPasswordReset } from "@/lib/firebase/auth";
 import { useFirebaseAuth } from "@/lib/firebase/auth-provider";
+import { LogoMark } from "@/components/LogoMark";
 
 export default function ForgotPasswordPage() {
   const { configured } = useFirebaseAuth();
@@ -33,7 +34,9 @@ export default function ForgotPasswordPage() {
     <div className="auth-page">
       <div className="auth-card">
         <Link href="/" className="brand">
-          <span className="brandmark">RM</span>
+          <span className="brandmark">
+            <LogoMark size={20} />
+          </span>
           relaymap
         </Link>
         <p className="eyebrow">Account recovery</p>

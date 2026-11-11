@@ -1,302 +1,294 @@
-# RELAYMAP
+<p align="center">
+  <img src="doc/assets/relaymap-banner.svg" alt="RELAYMAP — Evidence-Driven Project Continuity Platform" width="100%" />
+</p>
 
-**Evidence-Driven Project Continuity Platform**
+<h1 align="center">RELAYMAP</h1>
+<p align="center"><strong>Evidence-Driven Project Continuity Platform</strong></p>
+<p align="center"><em>Don't just transfer files. Transfer understanding.</em></p>
 
-Project knowledge is rarely lost all at once. It leaks: a decision recorded only
-in a chat thread, a task whose owner has left, a deployment target mentioned in
-one document and contradicted in another, an unwritten rationale that only made
-sense to the person who wrote it. When ownership changes, the next person
-inherits the artefacts but not the context.
+<p align="center">
+  <a href="https://relaymapnowlive.vercel.app/"><strong>Open demo preview</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/JayeshJadhav28/relaymap"><strong>View source</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/JayeshJadhav28/relaymap/issues"><strong>Report an issue</strong></a>
+</p>
 
-RELAYMAP reconstructs project context from source material, binds every claim to
-the evidence that supports it, and keeps unresolved gaps visible instead of
-silently turning them into facts. The result is a reviewable knowledge base and a
-permission-aware handover for the incoming owner.
+<p align="center">
+  <a href="https://github.com/JayeshJadhav28/relaymap/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/JayeshJadhav28/relaymap?style=flat-square&label=stars"></a>
+  <a href="https://github.com/JayeshJadhav28/relaymap/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/JayeshJadhav28/relaymap?style=flat-square&label=forks"></a>
+  <a href="https://github.com/JayeshJadhav28/relaymap/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/JayeshJadhav28/relaymap?style=flat-square&label=issues"></a>
+  <a href="https://github.com/JayeshJadhav28/relaymap/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/JayeshJadhav28/relaymap?style=flat-square"></a>
+  <a href="https://github.com/JayeshJadhav28/relaymap"><img alt="Top language" src="https://img.shields.io/github/languages/top/JayeshJadhav28/relaymap?style=flat-square"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square"></a>
+</p>
 
-The product workflow is:
+<p align="center">
+  <img alt="Next.js 16.4.3" src="https://img.shields.io/badge/Next.js-16.4.3-111111?style=flat-square&logo=nextdotjs">
+  <img alt="React 19.3.1" src="https://img.shields.io/badge/React-19.3.1-149ECA?style=flat-square&logo=react&logoColor=white">
+  <img alt="TypeScript 5.9.3" src="https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=flat-square&logo=typescript&logoColor=white">
+  <img alt="Firebase" src="https://img.shields.io/badge/Firebase-Auth-FFCA28?style=flat-square&logo=firebase&logoColor=111111">
+  <img alt="Supabase" src="https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?style=flat-square&logo=supabase&logoColor=111111">
+  <img alt="Vitest 4.1.5" src="https://img.shields.io/badge/Vitest-4.1.5-6E9F18?style=flat-square&logo=vitest&logoColor=white">
+  <img alt="Playwright 1.65.0" src="https://img.shields.io/badge/Playwright-1.65.0-2EAD33?style=flat-square&logo=playwright&logoColor=white">
+</p>
 
-`Connect → Reconstruct → Verify → Review → Handover`
+---
 
-RELAYMAP does not claim to understand every project record, and it does not
-guarantee complete knowledge reconstruction. Extraction is deterministic and
-rule-based; unsupported or contradictory material remains marked as unresolved
-until a human reviews it.
+Project knowledge is rarely lost all at once. It leaks: a decision recorded only in a chat thread, a task whose owner has left, a deployment target mentioned in one document and contradicted in another, or an unwritten rationale that only made sense to the person who wrote it.
 
-> **Synthetic demo data.** The included CampusConnect workspace is fictional.
-> It is not customer, institutional or production data. Do not upload
-> confidential or personal information to the demo.
+**RELAYMAP** reconstructs project context from source material, binds claims to supporting evidence, keeps uncertainty visible and prepares permission-aware handovers for incoming owners.
+
+> [!IMPORTANT]
+> **Synthetic demo data:** The included CampusConnect workspace is fictional. It is not customer, institutional or production data. Do not upload confidential or personal information to the demo.
+
+> [!NOTE]
+> The demo preview URL above is the project-provided deployment address. Its availability and hosted real-workspace integrations have not been independently verified as part of this README update. A successful page load or health response alone would not prove Firebase, Supabase, RLS or Storage connectivity.
 
 ## Contents
 
+- [What is RELAYMAP?](#what-is-relaymap)
+- [Product workflow](#product-workflow)
 - [Core capabilities](#core-capabilities)
-- [How RELAYMAP works](#how-relaymap-works)
 - [Demo mode vs real workspace mode](#demo-mode-vs-real-workspace-mode)
-- [Technology stack](#technology-stack)
 - [Architecture](#architecture)
+- [Technology stack](#technology-stack)
 - [Repository structure](#repository-structure)
-- [Prerequisites](#prerequisites)
-- [Local installation and startup](#local-installation-and-startup)
+- [Quick start](#quick-start)
 - [Environment configuration](#environment-configuration)
 - [Database and migrations](#database-and-migrations)
-- [Testing and quality checks](#testing-and-quality-checks)
-- [Technical documentation](#technical-documentation)
+- [Testing](#testing)
 - [Deployment](#deployment)
 - [Security and privacy](#security-and-privacy)
-- [Known limitations and project status](#known-limitations-and-project-status)
-- [License and contributors](#license-and-contributors)
+- [Known limitations](#known-limitations)
+- [Roadmap](#roadmap)
+- [Team](#team)
+- [License](#license)
 
-## Core capabilities
+## What is RELAYMAP?
 
-| Capability | Status | Notes |
-|---|---|---|
-| Synthetic demo workspace | Implemented | CampusConnect fixtures in a process-local, in-memory store. |
-| Organisation and project management | Implemented | Real workspace; the database derives creator roles. |
-| Invitations | Implemented | Organisation and optional project scope; hashed, single-use, expiring tokens. Email delivery is not implemented. |
-| Source ingestion | Implemented | `.txt`, `.md`, `.markdown`, `.csv`, `.json`, `.pdf`, `.docx`; 2 MiB and 500,000-character limits. |
-| Parsing, chunking and content hashing | Implemented | PDF page ranges are preserved where the format provides them. |
-| Claim extraction | Implemented | Deterministic rules for decisions, tasks, ownership, dependencies, risks, blockers, questions and gaps. No external AI provider. |
-| Evidence binding and citation validation | Implemented | Claims cite exact source chunks; the database checks the quoted snippet and its hash. |
-| Knowledge relationships | Implemented | Typed relationships between claims and graph traversal in the domain layer. |
-| Review workflow | Implemented | Approve, reject, edit, resolve conflict, request clarification and mark inferred. Reviews are append-only. |
-| Conflict handling | Implemented | Contradictory deployment statements are grouped and surfaced for a human decision. |
-| Readiness assessment | Implemented | Calculated in the shared domain; shown in the demo and snapshotted on real handovers. |
-| Impact analysis | Implemented | Demo API and bounded graph traversal for downstream effects; not exposed in the real workspace UI. |
-| Handover drafting and versioning | Implemented | The Scribe prepares a draft from authorised records and never approves or publishes it. |
-| Handover export | Implemented | Print-friendly HTML report for a specific handover version. |
-| Acknowledgement | Implemented | Incoming members acknowledge an exact published version; the record is auditable and grants no write access. |
-| Incoming-owner questions | Implemented | Deterministic question generation for missing rationale, ownership, conflicts, missing evidence and knowledge concentration. |
-| Audit history | Implemented | Review, publish, acknowledge and administration events are recorded. |
-| Permission-aware access | Implemented | Organisation role, project role and finance clearance are enforced by database RLS, not only by the UI. |
-| Finance-sensitive visibility | Implemented | Finance sources and every claim citing them are redacted before a response or handover draft is assembled. |
-| Evidence retrieval assistant ("AskBuddy") | Implemented | Demo API with deterministic retrieval over existing claims and citations. It is not a generative model and says when evidence is insufficient. |
-| GitHub integration | Foundation only | Database tables, a server-only library and tests exist; there is no user-facing GitHub route or UI in this build. |
-| AI-assisted extraction or answering | Not implemented | No model provider, API key or prompt pipeline is present. |
+RELAYMAP is an evidence-driven, permission-aware project knowledge handover platform. It turns scattered project records into a structured, reviewable knowledge base that helps the next owner understand:
 
-"Implemented" means the workflow exists in the codebase and its domain rules are
-covered by the local test suite. Several implemented capabilities only run end
-to end once a Firebase project and a Supabase project are configured; those
-dependencies are described in the sections that follow.
+- **What happened?** Decisions, tasks, risks and project changes.
+- **Why did it happen?** The rationale and source material behind a claim.
+- **Who owns it?** Recorded responsibilities and knowledge concentration.
+- **What remains?** Unfinished work, blockers and unresolved questions.
+- **What depends on it?** Recorded relationships between decisions, claims and tasks.
+- **What should happen next?** Evidence-backed next actions and a role-aware handover.
 
-## How RELAYMAP works
+The system does not guarantee complete reconstruction. Extraction is deterministic and rule-based. Unsupported, contradictory or incomplete material remains visible for human review rather than being silently promoted into fact.
 
-1. **Connect.** A project member uploads source material. The parser detects the
-   file type, extracts text, splits it into stable chunks and records a content
-   hash.
-2. **Reconstruct.** Ordered extraction rules identify candidate decisions,
-   tasks, owners, dependencies, risks, blockers, questions and missing
-   information. Each candidate is stored as a claim with a verification status,
-   not as an established fact.
-3. **Link evidence.** Every claim carries citations to a source and chunk. The
-   citation quote must match the chunk exactly, and the database enforces that
-   invariant on write.
-4. **Verify and review.** A reviewer approves, rejects, edits, resolves a
-   conflict, requests clarification or marks a claim inferred. Review records
-   are append-only, so the history of a decision is preserved.
-5. **Assess readiness.** Readiness combines approved claims, unresolved gaps,
-   conflicts, missing evidence and ownership concentration. Gap questions are
-   generated for the incoming owner.
-6. **Hand over.** A lead assembles a handover for a recipient role. Publishing
-   snapshots the permitted claim set, readiness and a content hash. The incoming
-   member acknowledges that exact version.
+### Product preview
 
-Evidence traceability is the core constraint. A statement without a supporting
-citation can remain visible as unresolved, but it cannot be approved as verified
-knowledge. Redaction happens before assembly: if a role may not read a source,
-claims that cite that source are excluded rather than shown with their evidence
-removed.
+The workflow graphic below is an original project diagram, not a screenshot of the running application.
+
+<p align="center">
+  <img src="doc/assets/relaymap-workflow.svg" alt="RELAYMAP workflow: Connect, Reconstruct, Verify, Review and Handover" width="100%">
+</p>
+
+Application screenshots are not currently included in the public repository. Add genuine captures under `docs/assets/` when they are available; do not use mock screens as evidence of implemented functionality.
+
+## Product workflow
+
+RELAYMAP follows five connected stages:
+
+| Stage | What happens |
+|---|---|
+| **Connect** | A member provides authorised project sources. Files are validated, parsed, chunked and hashed. |
+| **Reconstruct** | Ordered deterministic rules identify candidate decisions, tasks, owners, dependencies, risks, blockers, questions and information gaps. |
+| **Verify** | Claims are linked to exact source chunks and quotations. Citation integrity is validated before a claim can be approved. |
+| **Review** | An authorised reviewer edits, approves, rejects, resolves conflicts or requests clarification. Review history is append-only. |
+| **Handover** | A lead prepares a role-aware draft. Publishing snapshots the permitted claims and readiness state; the incoming member acknowledges a specific version. |
 
 ```mermaid
 flowchart LR
-    A["Project sources"] --> B["Parse, chunk and hash"]
+    A["Authorised project sources"] --> B["Parse, chunk and hash"]
     B --> C["Deterministic extraction"]
-    C --> D["Claims with citations"]
+    C --> D["Claims with source citations"]
     D --> E{"Human review"}
-    E -->|"approve"| F["Approved claims"]
-    E -->|"reject, edit or clarify"| D
-    D -.->|"unresolved gaps"| G["Readiness and gap questions"]
-    F --> G
-    G --> H["Handover version"]
-    H --> I["Incoming owner acknowledges"]
+    E -->|"Approve"| F["Approved knowledge"]
+    E -->|"Edit, reject or clarify"| D
+    D -.-> G["Visible gaps and conflicts"]
+    F --> H["Readiness assessment"]
+    G --> H
+    H --> I["Versioned handover"]
+    I --> J["Incoming owner acknowledges"]
 ```
+
+**Evidence traceability is the central constraint.** A claim must point to a real source and chunk. The quoted text is checked against the stored chunk. A role that cannot access a source must not receive claims that depend on that source with the evidence stripped away; restricted claims are excluded during assembly.
+
+## Core capabilities
+
+The table describes the public codebase's documented implementation scope. “Implemented” does not mean that every hosted integration has been exercised in a live Firebase and Supabase environment.
+
+| Capability | Status | Notes |
+|---|---|---|
+| Synthetic CampusConnect demo | Implemented | Fictional fixtures in a process-local in-memory store. |
+| Organisation and project management | Implemented | Real-workspace services and database-backed membership model. |
+| Invitations | Implemented | Scoped, hashed, single-use and expiring tokens. Email delivery is not implemented. |
+| Source ingestion | Implemented | `.txt`, `.text`, `.md`, `.markdown`, `.csv`, `.json`, `.pdf` and `.docx`; 2 MiB and 500,000-character limits. |
+| Parsing, chunking and hashing | Implemented | PDF page ranges are retained where available; DOCX does not receive invented page numbers. |
+| Claim extraction | Implemented | Deterministic rules identify supported decisions, tasks, ownership, dependencies, risks, blockers, questions and gaps. |
+| Evidence binding | Implemented | Claims cite exact source chunks; quote text and hash are checked. |
+| Knowledge relationships | Implemented | Typed relationships and bounded graph traversal in the domain layer. |
+| Human review | Implemented | Approve, reject, edit, resolve conflict, request clarification and mark inferred. Review records are append-only. |
+| Conflict handling | Implemented | Contradictory deployment statements can be grouped for human resolution. |
+| Readiness assessment | Implemented | Shared deterministic calculation; includes evidence, review, ownership, conflict, next-action and acknowledgement components. |
+| Impact analysis | Partially exposed | Demo API and bounded graph traversal exist; impact analysis is not exposed in the real-workspace UI. |
+| Handover drafting and versioning | Implemented | Scribe assembles a draft from authorised records; it does not approve or publish. |
+| Handover export | Implemented | Print-friendly HTML for a specific handover version. |
+| Acknowledgement | Implemented | Incoming users acknowledge an exact published version; acknowledgement grants no write access. |
+| Incoming-owner questions | Implemented | Deterministic questions for missing rationale, ownership, conflicts, missing evidence and knowledge concentration. |
+| Audit history | Implemented | Review, publish, acknowledge and administration events are recorded. |
+| Permission-aware access | Implemented | Organisation role, project role and finance clearance are enforced through database RLS. |
+| Finance-sensitive visibility | Implemented | Finance sources and claims citing them are redacted before response or handover assembly. |
+| AskBuddy evidence retrieval | Implemented | Deterministic retrieval over recorded claims and citations; not a generative model. |
+| GitHub project intelligence | Foundation only | Server-only GitHub client and analysis helpers exist, but there is no user-facing repository connection route or UI in this build. |
+| AI-assisted extraction or answering | Not implemented | No LLM provider, model API key or prompt pipeline is used. |
 
 ## Demo mode vs real workspace mode
 
-RELAYMAP serves two deliberately separate paths that share types and pure domain
-functions, but never share rows.
+RELAYMAP has two deliberately separate execution paths. They share types and pure domain logic, but the synthetic demo does not read or write real workspace rows.
 
 | Property | Synthetic demo | Real workspace |
 |---|---|---|
 | Entry point | `/` and `/dashboard` | `/app` |
-| Identity | None. A preview cookie selects a role for filtering only. | Firebase Authentication; a verified ID token is required on every request. |
+| Identity | No authenticated identity; a preview cookie selects a demo role for filtering. | Firebase Authentication; server-verified ID token required for API requests. |
 | Data store | Process-local in-memory store on `globalThis`, rebuilt from fixtures. | Supabase PostgreSQL with row-level security. |
-| File storage | Fixtures only. | Private Supabase Storage bucket `relaymap-sources`. |
-| Persistence | Resets when the Node.js process restarts. | Database-backed. |
-| Cloud configuration | None required. | Firebase web + Admin credentials and Supabase URL + publishable key. |
-| Failure behaviour | Always available unless explicitly disabled. | Returns an honest error; it never substitutes demo data. |
+| File storage | Synthetic fixtures. | Private Supabase Storage bucket `relaymap-sources`. |
+| Persistence | Resets when the Node.js process restarts; instances do not share state. | Database-backed, subject to cloud configuration. |
+| Cloud configuration | None required. | Firebase web/Admin configuration and Supabase URL/publishable key. |
+| Failure behaviour | Demo remains separate from cloud data. | Returns an error when real services are unavailable; it does not substitute demo data. |
 
-### Synthetic demo mode
+### Synthetic demo
 
-The demo reconstructs a fictional **CampusConnect** student-transit project. Its
-sources, claims, reviews, handovers and acknowledgements are synthetic fixtures.
+The demo reconstructs a fictional **CampusConnect** student-transit project.
 
-- **Roles:** `lead`, `reviewer`, `treasurer`, `incoming`.
-- **Role switching:** `POST /api/role` sets the `relay_role` preview cookie. The
-  role switcher is a preview control, not authentication.
-- **Capabilities:** leads can upload, review and manage; reviewers can upload and
-  review; incoming members can acknowledge. The treasurer role previews
-  finance-cleared reading. These are demo capabilities, not the real permission
-  model.
-- **Finance visibility:** finance sources and claims that cite them are hidden
-  from roles that are not permitted to read them.
-- **Reset:** `POST /api/reset` restores the original fixtures, reviews and audit
-  events. The reset control is only available in demo mode.
-- **Persistence:** state lives in memory for the lifetime of the server process.
-  Restarting the process resets the demo. Multiple instances do not share demo
-  state.
-- **Isolation:** the demo never reads or writes Supabase, even when cloud
-  credentials are configured. Setting `RELAY_DEMO_MODE=false` disables role
-  switching and reset and forces the least-privilege `incoming` preview role. It
-  does not enable or disable the real path.
+- **Preview roles:** `lead`, `reviewer`, `treasurer` and `incoming`.
+- **Role switching:** `POST /api/role` sets the `relay_role` preview cookie. This is a demo preview control, not authentication.
+- **Reset:** `POST /api/reset` restores the original fixtures, reviews and audit events. The reset endpoint is available only in demo mode.
+- **Finance preview:** finance sources and claims citing them are hidden from roles without finance visibility.
+- **Persistence:** state is held in memory for the lifetime of a server process. Restarting the process resets the demo; multiple server instances do not share state.
+- **Isolation:** the demo never reads or writes Supabase, even when cloud credentials are configured. Setting `RELAY_DEMO_MODE=false` disables demo role switching and reset; it does not activate or deactivate the real workspace.
 
-### Real workspace mode
+### Real workspace
 
-The real path is a separate authenticated application under `/app`.
+The real application is separate under `/app`.
 
-- **Firebase Authentication** is the only end-user identity provider. Supported
-  flows are email/password registration, sign-in, password reset and optional
-  email verification.
-- **Server-side token verification** uses `firebase-admin`. The server checks the
-  signature, expiry, issuer and audience, requires a subject, and checks
-  revocation for sensitive calls. Identity is never accepted from a request
-  body.
-- **Identity provisioning** maps the Firebase UID to an internal `app_users` row
-  through an idempotent security-definer RPC. A first-time user gets a profile
-  but no organisation or project.
-- **Request-scoped Supabase client.** Each API request creates a client whose
-  access token is the caller's Firebase ID token. The server-only Supabase key is
-  reserved for operational tooling and never answers a user request.
-- **Row-level security.** Organisation membership, project role and finance
-  clearance are enforced in PostgreSQL. The service layer performs additional
-  capability checks for clearer errors, but RLS remains authoritative.
-- **Private source storage.** Objects use the path
-  `{organizationId}/{projectId}/{sourceId}/{safeFilename}`. Storage policies
-  derive authorisation from those path segments, and the bucket is not public.
+1. The browser signs in through **Firebase Authentication**.
+2. The browser sends a Firebase ID token to the Next.js API.
+3. **Firebase Admin** verifies the token server-side, including signature and configured project audience.
+4. A request-scoped Supabase client forwards that caller's Firebase ID token.
+5. The `provision_app_user()` RPC maps the verified Firebase UID to an internal `app_users` record.
+6. Domain services read or write through the caller-scoped client.
+7. **PostgreSQL RLS** enforces organisation membership, project role and finance clearance.
 
-Email verification is **optional** in this build: a newly registered account
-reaches `/app` without confirming its address. Firebase still reports the
-truthful `email_verified` value, and the verifier retains a `requireVerifiedEmail`
-option so the gate can be re-enabled later. This is a deliberate development
-trade-off, not a production recommendation.
+The server-only Supabase secret key is reserved for operational tooling. It is not used to answer ordinary user requests.
 
-A hosted Firebase project and a hosted Supabase project with Firebase configured
-as a third-party auth provider are required for this path. Hosted authentication,
-remote migrations, cross-tenant isolation and hosted storage have **not** been
-verified from this repository.
+Email verification is optional in the current implementation. A newly registered account can reach `/app` without confirming the address. This is a development trade-off, not a recommendation for an unrestricted public sign-up flow.
 
-## Technology stack
-
-| Technology | Version | Role |
-|---|---|---|
-| Next.js (App Router) | 16.4.3 | Pages, route handlers, server runtime and standalone output. |
-| React | 19.3.1 | UI for the demo and the real workspace. |
-| TypeScript | 5.9.3 | Application and domain types. |
-| Node.js | `>=22.0.0` | Runtime declared by `package.json`; the container uses Node 22 Alpine. |
-| pnpm | 10.x | Package manager. The Dockerfile activates pnpm 10.11.0 through Corepack. |
-| Tailwind CSS | 4.3.3 | Styling dependency configured through PostCSS; the current interface uses a custom stylesheet. |
-| Firebase JS SDK | 13.2.0 | Browser authentication and ID tokens. |
-| Firebase Admin SDK | 14.5.0 | Server-side token verification and claim provisioning. |
-| Supabase JS | 2.118.0 | PostgreSQL, PostgREST and Storage access. |
-| PostgreSQL | 17 | Schema, constraints, RLS, security-definer RPCs and storage policies. |
-| Zod | 4.6.7 | Strict API request validation. |
-| Mammoth | 1.13.0 | DOCX text extraction. |
-| unpdf | 1.9.1 | PDF text extraction and page ranges. |
-| Vitest | 4.1.5 | Unit and domain tests. |
-| Playwright | 1.65.0 | Browser regression tests. |
-| ESLint | 9.39.2 | Static analysis with `eslint-config-next`. |
-
-No AI SDK or model provider is used. A server-only GitHub REST client exists
-but is not wired to any route or UI.
+Hosted Firebase authentication, hosted Supabase RLS, hosted Storage and cross-tenant isolation must be independently verified in the target cloud projects before treating the real-workspace path as production validated.
 
 ## Architecture
 
-RELAYMAP is one Next.js application with one TypeScript domain layer and one
-visual system. The two runtime paths are isolated:
-
-- Demo pages render from an in-memory repository.
-- Real pages are client components under a Firebase auth provider and call
-  `/api/app/*` route handlers with a bearer token.
+RELAYMAP is one Next.js application with a shared TypeScript domain layer. The synthetic demo and authenticated real workspace have separate runtime paths.
 
 ```mermaid
 flowchart TB
-    B["Browser"]
+    Browser["Browser"]
 
     subgraph Demo["Synthetic demo path"]
-        DP["Demo pages /dashboard, /projects, /sources, /knowledge, /review, /timeline, /handovers, /settings"]
-        DS[("In-memory demo store on globalThis")]
+        DemoPages["Demo pages"]
+        DemoStore[("Process-local in-memory fixtures")]
+        Browser --> DemoPages --> DemoStore
     end
 
-    subgraph Real["Real workspace path"]
-        RP["/app client pages"]
-        API["/api/app/* route handlers"]
-        ADM["Firebase Admin verifyIdToken"]
-        DB[("Supabase PostgreSQL with RLS")]
-        ST[("Private Storage relaymap-sources")]
+    subgraph Real["Authenticated real-workspace path"]
+        AppPages["/app client pages"]
+        Api["Next.js /api/app/* routes"]
+        Verify["Firebase Admin token verification"]
+        Provision["provision_app_user() identity mapping"]
+        RequestClient["Request-scoped Supabase client"]
+        Database[("Supabase PostgreSQL + RLS")]
+        Storage[("Private relaymap-sources bucket")]
+
+        AppPages --> Api --> Verify --> Provision --> RequestClient
+        RequestClient --> Database
+        RequestClient --> Storage
     end
 
-    FB["Firebase Authentication"]
-
-    B --> DP --> DS
-    B --> RP --> API
-    RP <-->|"sign-in and ID token"| FB
-    API --> ADM
-    ADM -->|"signature and audience check"| FB
-    API -->|"caller-scoped client"| DB
-    API -->|"path-scoped policies"| ST
+    Firebase["Firebase Authentication"]
+    AppPages <-->|"sign-in and ID token"| Firebase
 ```
 
-### Layers
+### Main layers
 
 | Layer | Location | Responsibility |
 |---|---|---|
-| Pages and route handlers | `src/app/**` | Composition, navigation, HTTP contracts, loading and error states. |
-| API validation | `src/lib/api/**` | Strict Zod schemas and safe error mapping. |
-| Real services | `src/lib/real/*-service.ts` | Authorised reads and writes against Supabase. |
-| Identity | `src/lib/firebase/**` | Browser auth, token verification and custom-claim provisioning. |
+| Pages and route handlers | `src/app/**` | UI composition, navigation and HTTP contracts. |
+| Components | `src/components/**` | Shared interface, review, source and handover components. |
+| API validation | `src/lib/api/**` | Zod request validation and safe error mapping. |
+| Real workspace services | `src/lib/real/**` | Authorised Supabase reads and writes. |
+| Identity | `src/lib/firebase/**` | Browser authentication and server-side token verification. |
 | Supabase access | `src/lib/supabase/**` | Browser, server and request-scoped clients. |
-| Domain | `src/lib/domain/**` | Pure rules shared by demo and real paths: citations, redaction, readiness, handover, graph. |
-| Extraction | `src/lib/extraction/**` | Ordered deterministic rules. |
-| Agents | `src/lib/agents/**` | Scribe draft assembly, gap questions and evidence retrieval. |
-| Demo repository | `src/lib/demo/**` | Synthetic fixtures, role preview and in-memory mutations. |
-| Database | `supabase/migrations/**` | Schema, constraints, RLS, RPCs and storage policies. |
+| Domain | `src/lib/domain/**` | Citation validation, redaction, readiness, handover and graph rules. |
+| Extraction | `src/lib/extraction/**` | Ordered deterministic extraction rules. |
+| Agents | `src/lib/agents/**` | Scribe draft assembly, gap questions and evidence retrieval. These are deterministic modules, not LLM agents. |
+| Ingestion | `src/lib/ingestion/**` | Binary-aware document parsing, normalisation and chunking. |
+| GitHub foundation | `src/lib/github/**` | Server-only GitHub REST client and analysis helpers; not wired to a user-facing route/UI. |
+| Database | `supabase/migrations/**` | Schema, constraints, RLS policies, RPCs and storage policies. |
 
-### Request lifecycle for a real authenticated user
+### Evidence and extraction details
 
-1. The browser signs in with Firebase and obtains an ID token.
-2. The client calls `/api/app/*` with `Authorization: Bearer <Firebase ID token>`.
-3. `verifyFirebaseRequest` rejects a missing token, verifies the token with
-   Firebase Admin, checks the audience against the configured project and
-   returns the verified identity.
-4. `requireRealUser` creates a Supabase client whose access token is that same
-   token, then calls `provision_app_user()`.
-5. The RPC reads the Firebase UID from the verified JWT `sub`, maps it to the
-   internal `app_users` UUID and creates or updates the profile. It never reads
-   identity from the body.
-6. The service resolves project access through RLS-protected reads.
-7. PostgreSQL enforces organisation membership, project role and finance
-   clearance. Only mapped, redacted data is returned, with `Cache-Control:
-   no-store` and an `x-request-id`.
+- Supported text inputs include `.txt`, `.text`, `.md`, `.markdown`, `.csv` and `.json`.
+- PDF and DOCX files are handled as binary uploads, with file-signature checks before parsing.
+- PDF page ranges are retained where the format provides page boundaries.
+- DOCX does not have fixed page pagination; the parser does not invent page numbers.
+- Scanned PDFs requiring OCR are not processed by this build.
+- Maximum upload size is 2 MiB; extracted text is limited to 500,000 characters.
+- Content hashes and stable chunk offsets support source traceability.
+- Unsupported or unrecognised material is not automatically turned into a verified claim.
 
-The browser is never trusted for user id, email, organisation, project, role or
-clearance.
+### Readiness model
 
-### Firebase-to-Supabase identity bridge
+The shared domain calculation uses the following 100-point weighting:
 
-The foundation schema originally keyed profiles to `auth.users`. Migration
-`202611100001_relaymap_firebase_identity.sql` adds `app_users`, backfills existing
-profiles without changing their UUIDs, and re-points profile foreign keys. Helper
-functions `current_firebase_uid()` and `current_app_user_id()` replace `auth.uid()`
-in application policies. The `role: "authenticated"` custom claim is a PostgreSQL
-API role only; it grants no product permission.
+| Component | Weight |
+|---|---:|
+| Evidence coverage | 25 |
+| Review completion | 25 |
+| Ownership coverage | 15 |
+| Conflict resolution | 15 |
+| Critical next actions | 10 |
+| Incoming-member acknowledgement | 10 |
+| **Total** | **100** |
+
+The readiness score is a signal, not a guarantee of successful knowledge transfer. Reasons are returned for each component.
+
+## Technology stack
+
+Versions below reflect the public `package.json` and project configuration at the time this README was prepared.
+
+| Technology | Version / target | Use |
+|---|---|---|
+| Next.js App Router | 16.4.3 | Application pages, route handlers and standalone server output. |
+| React | 19.3.1 | UI rendering. |
+| TypeScript | 5.9.3 | Application and domain types. |
+| Node.js | `>=22.0.0` | Runtime. |
+| pnpm | 10.x | Package management; Docker activates 10.11.0. |
+| Tailwind CSS | 4.3.3 | Styling dependency; current UI also uses a custom stylesheet. |
+| Firebase JS SDK | 13.x | Browser authentication and ID tokens. |
+| Firebase Admin SDK | 14.x | Server-side identity verification and provisioning support. |
+| Supabase JS | 2.118.0 | PostgreSQL/PostgREST and Storage access. |
+| PostgreSQL | 17 | Database schema, constraints, RLS and RPCs. |
+| Zod | 4.6.7 | Request validation. |
+| Mammoth | 1.13.0 | DOCX text extraction. |
+| unpdf | 1.9.1 | PDF text extraction and page ranges. |
+| Vitest | 4.1.5 | Unit and domain tests. |
+| Playwright | 1.65.0 | Browser regression test specifications. |
+| ESLint | 9.39.2 | Static analysis. |
+
+No external AI model provider is used in this build. The extraction engine, Scribe, Interviewer and Buddy modules use deterministic application logic.
 
 ## Repository structure
 
@@ -304,422 +296,312 @@ API role only; it grants no product permission.
 relaymap/
 ├── src/
 │   ├── app/
-│   │   ├── (auth)/                 # login, register, forgot-password, verify-email
-│   │   ├── (workspace)/            # synthetic demo pages
-│   │   ├── app/                    # real workspace pages
-│   │   ├── api/
-│   │   │   ├── app/                # authenticated real-workspace API
-│   │   │   ├── auth/               # Supabase role-claim provisioning
-│   │   │   └── ...                 # demo and shared endpoints
-│   │   ├── layout.tsx
-│   │   └── page.tsx                # landing page
-│   ├── components/
-│   │   ├── real/                   # real-workspace client components
-│   │   └── ...                     # shared and demo components
+│   │   ├── (auth)/                 # Authentication pages
+│   │   ├── (workspace)/            # Synthetic demo workspace
+│   │   ├── app/                    # Real authenticated workspace
+│   │   └── api/                    # Demo, auth and real-workspace routes
+│   ├── components/                 # UI, review, source and handover components
 │   └── lib/
-│       ├── agents/                 # Scribe, interviewer, evidence retrieval
-│       ├── api/                    # Zod schemas and HTTP helpers
-│       ├── demo/                   # fixtures, role preview, in-memory store
-│       ├── domain/                 # citations, redaction, readiness, handover, graph
-│       ├── extraction/             # deterministic rule engine
-│       ├── firebase/               # browser auth, Admin verification, claims
-│       ├── github/                 # GitHub schema support library
-│       ├── handover/               # print-friendly report generation
-│       ├── ingestion/              # document parsing and chunking
-│       ├── real/                   # authorised Supabase services
-│       └── supabase/               # browser, server and request-scoped clients
+│       ├── agents/                 # Scribe, Interviewer and Buddy logic
+│       ├── api/                    # Request schemas and HTTP helpers
+│       ├── demo/                   # Synthetic fixtures and in-memory store
+│       ├── domain/                 # Evidence, graph, readiness and handover rules
+│       ├── extraction/             # Deterministic extraction engine and rules
+│       ├── firebase/               # Firebase browser/Admin integration
+│       ├── github/                  # GitHub foundation library
+│       ├── handover/               # Handover report generation
+│       ├── ingestion/              # Document parser and chunking
+│       ├── real/                   # Authenticated workspace services
+│       └── supabase/               # Supabase client configuration
 ├── supabase/
 │   ├── migrations/                 # 11 ordered SQL migrations
-│   └── tests/local/                # disposable PostgreSQL harness and RLS assertions
-├── tests/browser/                  # Playwright browser suite
-├── documentation/                  # local-only implementation notes (git-ignored)
-├── scripts/
-│   └── prepare-standalone.mjs      # copies static assets into the standalone build
-├── .opencode/                      # local-only design skill (git-ignored)
-├── .dockerignore
-├── .env.example
-├── .gitignore
+│   └── tests/local/                # PostgreSQL harness and SQL assertions
+├── tests/browser/                  # Playwright browser test specifications
+├── scripts/                        # Build preparation and UI snapshot utility
+├── docs/assets/                    # README banner and workflow graphics
+├── .env.example                    # Value-free environment template
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
 ├── next.config.ts
 ├── package.json
-├── playwright.config.ts
 ├── pnpm-lock.yaml
-├── pnpm-workspace.yaml
-├── tsconfig.json
 └── vitest.config.mts
 ```
 
-Generated directories such as `.next/`, `node_modules/`, `test-results/` and
-`coverage/` are intentionally omitted from the tree.
+The `documentation/` and `.opencode/` directories are intentionally excluded from the public repository. `scripts/ui-snapshots.mjs` writes captures under the local `documentation/` tree; those captures are not automatically published.
 
-## Prerequisites
+## Quick start
 
-| Requirement | Details |
-|---|---|
-| Node.js | `>=22.0.0`, as declared in `package.json`. |
-| pnpm | 10.x. The container pins 10.11.0 through Corepack; Corepack can activate the same version locally. |
-| Git | Required to clone the repository. |
-| Docker | Optional. Needed for the disposable PostgreSQL migration harness and for building the container image. |
-| Firebase project | Required only for the real workspace path: Authentication, a web app configuration and an Admin service account. |
-| Supabase project | Required only for the real workspace path: PostgreSQL, Storage and Firebase configured as a third-party auth provider. |
-| Microsoft Edge | The Playwright config uses the installed `msedge` channel, so no browser download is required by default. Adjust `playwright.config.ts` if Edge is unavailable. |
+The synthetic demo runs locally without Firebase or Supabase credentials.
 
-## Local installation and startup
+### Prerequisites
 
-The demo runs without any cloud credentials. The real workspace requires the
-configuration described in [Environment configuration](#environment-configuration).
+- Node.js `>=22.0.0`
+- pnpm 10.x
+- Git
 
-```powershell
+Docker is optional. It is required for the disposable PostgreSQL migration/RLS harness and for building the container image.
+
+### Install and run
+
+```bash
 git clone https://github.com/JayeshJadhav28/relaymap.git
 cd relaymap
 pnpm install
 pnpm dev
 ```
 
-Open <http://localhost:3000>.
+Open [http://localhost:3000](http://localhost:3000).
 
-`pnpm dev` starts the Next.js development server on port 3000 by default. The
-synthetic demo is available immediately, including without a `.env.local` file.
+The synthetic CampusConnect demo is available without a `.env.local` file.
 
-To prepare a local environment file for the real path:
+### Production build
+
+```bash
+pnpm build
+pnpm start:standalone
+```
+
+The build creates Next.js standalone output and runs `scripts/prepare-standalone.mjs` to copy static assets into the standalone directory.
+
+## Environment configuration
+
+Copy the value-free template:
+
+```bash
+cp .env.example .env.local
+```
+
+On Windows PowerShell:
 
 ```powershell
 Copy-Item .env.example .env.local
 ```
 
-Then fill in your own Firebase and Supabase values. Never commit `.env.local` or
-any service-account JSON file.
+The demo does not require these values. The real workspace does.
 
-Production build:
+### Application
 
-```powershell
-pnpm build
-pnpm start:standalone
-```
-
-`pnpm build` produces the Next.js standalone output and runs
-`scripts/prepare-standalone.mjs`, which copies `.next/static` into
-`.next/standalone`. `pnpm start:standalone` runs the generated server. The
-`Dockerfile` follows the same model and exposes port 3000.
-
-## Environment configuration
-
-`.env.example` is the canonical, value-free list. Create `.env.local` from it for
-local development, and inject the same variable names through your platform's
-secret store in deployment.
-
-### Application and runtime
-
-| Variable | Scope | Required | Purpose |
-|---|---|---|---|
-| `RELAY_DEMO_MODE` | Server | No | The synthetic demo is enabled unless this is set to `false` (case-insensitive). |
+| Variable | Scope | Purpose |
+|---|---|---|
+| `RELAY_DEMO_MODE` | Server | Demo is enabled unless this is set to `false`. |
 
 ### Firebase web configuration
 
-These values are public by design. They identify the Firebase web app; they do
-not authorise anything on their own.
+These values identify the Firebase web application. They do not authorise requests by themselves.
 
-| Variable | Scope | Required for real path | Purpose |
-|---|---|---|---|
-| `NEXT_PUBLIC_FIREBASE_API_KEY` | Public (browser) | Yes | Firebase web API key. |
-| `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | Public (browser) | Yes | Firebase auth domain; defaults to `<project>.firebaseapp.com` when omitted. |
-| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Public (browser) | Yes | Must match the Admin project. |
-| `NEXT_PUBLIC_FIREBASE_APP_ID` | Public (browser) | Yes | Firebase web app id. |
-| `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Public (browser) | No | Only needed if messaging is added later. |
+| Variable | Scope | Required for real path |
+|---|---|---|
+| `NEXT_PUBLIC_FIREBASE_API_KEY` | Browser | Yes |
+| `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | Browser | Yes |
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Browser | Yes |
+| `NEXT_PUBLIC_FIREBASE_APP_ID` | Browser | Yes |
+| `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Browser | Optional for current functionality |
 
 ### Firebase Admin configuration
 
-Server-only and sensitive. Use either the three explicit values or a credentials
-file path.
+Server-only and sensitive. Provide the explicit service-account fields or use an application credentials file.
 
-| Variable | Scope | Required for real path | Purpose |
-|---|---|---|---|
-| `FIREBASE_ADMIN_PROJECT_ID` | Server-only | Yes, unless using a credentials file | Firebase project id. |
-| `FIREBASE_ADMIN_CLIENT_EMAIL` | Server-only | Yes, unless using a credentials file | Service-account client email. |
-| `FIREBASE_ADMIN_PRIVATE_KEY` | Server-only, sensitive | Yes, unless using a credentials file | Service-account private key. |
-| `GOOGLE_APPLICATION_CREDENTIALS` | Server-only, sensitive | Alternative | Absolute path to a service-account JSON file. The file itself must never be committed. |
+| Variable | Scope | Required for real path |
+|---|---|---|
+| `FIREBASE_ADMIN_PROJECT_ID` | Server only | Yes, unless using credentials file |
+| `FIREBASE_ADMIN_CLIENT_EMAIL` | Server only | Yes, unless using credentials file |
+| `FIREBASE_ADMIN_PRIVATE_KEY` | Server only, sensitive | Yes, unless using credentials file |
+| `GOOGLE_APPLICATION_CREDENTIALS` | Server only, sensitive | Alternative credentials-file path |
 
 ### Supabase configuration
 
-| Variable | Scope | Required for real path | Purpose |
-|---|---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Public | Yes | Supabase project URL. |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public | Yes | Publishable key used by the caller-scoped client. RLS still applies. |
-| `SUPABASE_SECRET_KEY` | Server-only, sensitive | Operational only | Used by tooling such as migrations and bucket setup. It never answers a user request and never bypasses RLS. |
+| Variable | Scope | Required for real path |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Public | Yes |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public | Yes |
+| `SUPABASE_SECRET_KEY` | Server only, sensitive | Operational tooling only |
 
-### AI and GitHub integrations
+The publishable key is used with the caller's Firebase ID token, so database RLS remains applicable. The secret key is not used for ordinary user requests.
 
-There are no AI provider variables in this build. Extraction, gap questions,
-evidence retrieval and handover drafting are deterministic.
+> [!CAUTION]
+> Never commit `.env.local`, Firebase Admin service-account JSON, private keys, database passwords, `SUPABASE_SECRET_KEY` or invitation tokens. If a credential is exposed, rotate it and revoke the old value.
 
-| Variable | Scope | Required | Purpose |
-|---|---|---|---|
-| `GITHUB_TOKEN` | Server-only, sensitive | No | Read by the unwired server-only GitHub REST library. It is not listed in `.env.example` and enables no user-facing feature in this build. |
-
-> **Never commit credentials.** `.env.local`, Firebase Admin service-account
-> JSON, private keys, database passwords and provider secrets must stay outside
-> version control. The repository `.gitignore` excludes common credential file
-> patterns, but ignore rules are not a substitute for care.
+There are no AI-provider environment variables in this build. `GITHUB_TOKEN` is read by the server-only GitHub library, but that library is not connected to a user-facing GitHub feature.
 
 ## Database and migrations
 
-Engine: PostgreSQL 17, Supabase compatible. Migrations live in
-`supabase/migrations/` and are applied in filename order. The naming convention
-is `<YYYYMMDD><NNNN>_<description>.sql`. Migrations are additive; an applied
-migration is never edited.
+RELAYMAP targets PostgreSQL 17 with Supabase-compatible policies and functions. Migrations are applied in filename order from `supabase/migrations/`. There are **11 migrations** in the current public directory.
 
-| # | File | Purpose |
-|---|---|---|
-| 1 | `202610300001_relay_foundation.sql` | Foundation schema: profiles, organisations, members, projects, sources, knowledge items, citations, reviews, tasks, handovers, acknowledgements and audit logs. |
-| 2 | `202611070001_relaymap_identity_rls.sql` | Organisation and project role vocabulary, finance clearance, invitations, `joined_at` and the RLS baseline. |
-| 3 | `202611070002_relaymap_sources_evidence.sql` | Source hashes, extraction state, `source_chunks`, citation-to-chunk binding and quote verification. |
-| 4 | `202611070003_relaymap_claims_graph.sql` | Claim columns, `knowledge_relationships` and append-only review enforcement. |
+| # | Migration | Purpose |
+|---:|---|---|
+| 1 | `202610300001_relay_foundation.sql` | Core profiles, organisations, projects, sources, knowledge, reviews, handovers and audit schema. |
+| 2 | `202611070001_relaymap_identity_rls.sql` | Organisation/project roles, finance clearance, invitations and RLS baseline. |
+| 3 | `202611070002_relaymap_sources_evidence.sql` | Source hashes, chunks and citation-to-chunk validation. |
+| 4 | `202611070003_relaymap_claims_graph.sql` | Claim fields, knowledge relationships and append-only review enforcement. |
 | 5 | `202611070004_relaymap_handover_audit.sql` | Handover versions, version claims, questions, readiness snapshots and audit hardening. |
-| 6 | `202611070005_relaymap_github.sql` | GitHub connection records and server-only AI run records. Schema only; no route or UI uses them. |
-| 7 | `202611070006_relaymap_demo_seed.sql` | Idempotent demo seed function. It never runs automatically and requires an organisation admin or manager. |
-| 8 | `202611100001_relaymap_firebase_identity.sql` | Firebase identity bridge: `app_users`, backfill, re-pointed profile keys and JWT-derived helper functions. |
-| 9 | `202611100002_relaymap_storage.sql` | Private `relaymap-sources` bucket and path-derived storage policies. It skips cleanly where Supabase Storage is absent. |
-| 10 | `202611100003_relaymap_invitations_acknowledgement.sql` | Project-scoped invitations, acceptance rules and acknowledgement policies under the Firebase identity helpers. |
-| 11 | `202611110001_relaymap_optional_email_verification.sql` | Removes the hard email-verification block while retaining the truthful verification state. |
+| 6 | `202611070005_relaymap_github.sql` | GitHub connection records and server-only analysis/run schema; not a complete product integration. |
+| 7 | `202611070006_relaymap_demo_seed.sql` | Explicit, idempotent demo seed function. |
+| 8 | `202611100001_relaymap_firebase_identity.sql` | Firebase UID to internal `app_users` identity bridge. |
+| 9 | `202611100002_relaymap_storage.sql` | Private `relaymap-sources` bucket and path-derived storage policies. |
+| 10 | `202611100003_relaymap_invitations_acknowledgement.sql` | Project-scoped invitations and acknowledgement policies. |
+| 11 | `202611110001_relaymap_optional_email_verification.sql` | Optional email-verification behaviour. |
 
-### Identity and authorisation model
+### Local PostgreSQL validation harness
 
-- `public.app_users` maps `firebase_uid` to a stable internal UUID.
-- Organisation membership carries `role` (`admin | manager | member | viewer`)
-  and `clearance` (`standard | finance`).
-- Project membership carries `role`
-  (`lead | reviewer | contributor | departed | incoming | viewer`).
-- Finance is a clearance, not a role. A reviewer may hold finance clearance
-  without gaining project-lead rights.
-- `departed` is a real role: it preserves the audit trail while removing write
-  access.
-- RLS is enabled on every application table. `anon` has no application-table
-  grants, and the service key is not used to answer user requests.
-
-### Invariants enforced in the database
-
-- A citation's exact snippet must exist in the referenced source chunk.
-- A quote hash must match the stored snippet.
-- Reviews are append-only.
-- A published handover version's claim set is immutable.
-- Readiness is stored with the published version.
-- There is one acknowledgement per user per handover version.
-- There is one membership per user per organisation or project.
-- Role and clearance values are constrained.
-- A project belongs to exactly one organisation.
-
-### Local validation harness
-
-The harness starts or reuses a disposable `postgres:17-alpine` container on port
-55432, creates a fresh `relaymap_verify` database, applies every migration in
-filename order, runs constraint and RLS assertions, and applies the seed twice to
-prove idempotency.
+The PowerShell harness creates or reuses a disposable PostgreSQL 17 container, applies bootstrap SQL and migrations in filename order, runs constraint/RLS assertions and exercises demo-seed idempotency.
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File supabase\tests\local\run.ps1
 ```
 
-It uses auth stubs. It does not run GoTrue, PostgREST, Realtime or Supabase
-Storage, and it is not a hosted Supabase integration test.
+This harness uses auth stubs. It does not run GoTrue, PostgREST, Realtime or Supabase Storage, and it is not a hosted Supabase integration test.
 
-### Applying migrations to a hosted project
+### Hosted migration workflow
 
-```powershell
+After linking a Supabase project:
+
+```bash
 supabase link --project-ref <project-ref>
 supabase db push
 ```
 
-Alternatively, apply the files in order with `psql` against the pooled connection
-string. Back up before the first hosted migration, review destructive changes,
-and never run the local harness against a hosted database. Do not run
-`supabase db reset` against a hosted project: it destroys data rather than
-applying incremental migrations. The repository does not include
-`supabase/config.toml`; the CLI workflow assumes a linked project.
+Review and back up before applying migrations to a hosted database. Do not run `supabase db reset` against a hosted project.
 
-## Testing and quality checks
+## Testing
 
-| Command | What it runs |
+The following scripts are defined in `package.json`:
+
+| Command | Purpose |
 |---|---|
-| `pnpm typecheck` | TypeScript compiler with `--noEmit`. |
+| `pnpm typecheck` | TypeScript check with `tsc --noEmit`. |
 | `pnpm lint` | ESLint across the repository. |
-| `pnpm test` | Vitest unit and domain suites configured in `vitest.config.mts`. |
-| `pnpm test:browser` | Playwright suite in `tests/browser`. |
-| `pnpm build` | Next.js production build plus the standalone preparation script. |
-| `pnpm audit --prod` | Dependency audit for production packages. |
+| `pnpm test` | Vitest unit and domain test suites. |
+| `pnpm test:browser` | Playwright browser suite under `tests/browser`. |
+| `pnpm build` | Next.js production build and standalone preparation. |
+| `pnpm audit --prod` | Production dependency audit using pnpm's audit command. |
 
-Playwright uses the locally installed Microsoft Edge channel and reuses a dev
-server already running on port 3000. If no server is running, it starts
-`pnpm dev --port 3000`. To run against an existing production build, set
-`PLAYWRIGHT_BASE_URL`; no web server is started in that mode.
+The public repository contains browser test specifications, but `playwright.config.ts` is excluded by the current `.gitignore`. A clean clone may therefore need a local Playwright configuration before `pnpm test:browser` can run.
 
-Database and RLS checks use the PowerShell harness described above and require
-Docker.
-
-## Technical documentation
-
-Implementation documentation is maintained locally and is intentionally excluded
-from this public repository. It covers the authenticated API contract, runtime
-architecture, authentication flows, configuration, database schema and
-migrations, deployment, operations, security and private storage.
-
-This README is the public technical summary. In a full development checkout, the
-local `documentation/production/` directory contains the detailed references.
-
-## User Impact
-
-Teams can use RELAYMAP as a persistent collaborative platform where project
-knowledge can be securely reviewed, transferred and acknowledged by incoming
-members. The synthetic demo runs without cloud credentials; the real workspace
-requires Firebase Authentication and Supabase PostgreSQL with row-level security.
-The production website lives at **https://ith.relaymap.io** (the internal `ith`
-subdomain). It serves both the demo (`RELAY_DEMO_MODE=true`) and the real user
-path (`/app`), each protected by verified Firebase ID tokens and RLS.
+The local PostgreSQL harness requires Docker and is separate from hosted Firebase/Supabase verification. Tests that use local auth stubs do not prove hosted GoTrue, PostgREST, Storage or cross-tenant behaviour.
 
 ## Deployment
 
-The application ships as one Next.js standalone container. It needs Node.js 22,
-outbound HTTPS to Firebase and Supabase, and no local database.
+### Demo preview
 
-### Container
+[Open the RELAYMAP preview](https://relaymapnowlive.vercel.app/)
 
-```powershell
+This is the deployment URL supplied for the project. Confirm availability and real-workspace integrations in the target environment before treating them as verified. The previously mentioned `ith.relaymap.io` address is not used here because it is not the repository's current homepage value.
+
+### Vercel
+
+- Import `JayeshJadhav28/relaymap`.
+- Set the repository root as the project root.
+- Use the Next.js framework preset.
+- Configure Firebase and Supabase environment variables for each required deployment environment.
+- Add the deployed hostname to Firebase Authentication's authorised domains.
+- Configure Firebase as a third-party auth provider in Supabase.
+
+Set `PORT` if required by the host. Use `/api/health` as a process liveness endpoint only; a healthy response is not proof of successful Firebase or Supabase authentication.
+
+### Docker
+
+The repository includes a multi-stage standalone Dockerfile.
+
+```bash
 docker build -t relaymap:local .
 docker run --rm -p 3000:3000 --env-file .env.local relaymap:local
 ```
 
-The image uses `node:22-alpine`, installs with `pnpm install --frozen-lockfile`,
-builds the standalone output, runs as a non-root user (uid 1001), exposes port
-3000 and probes `/api/health`. No secret is baked into any layer.
-
-### Vercel
-
-- Import the repository with the repository root as the project root.
-- Use the Next.js framework preset.
-- Configure the environment variables for Production and Preview.
-- Add the deployment domain to Firebase Authentication → Authorized domains.
-- Register Firebase as a third-party auth provider in Supabase.
-
-### Platform notes
-
-- Set `PORT` if the platform requires a different listening port; the standalone
-  server reads it.
-- Keep the request body limit above 2 MiB so source uploads reach the parser.
-- Configure the readiness probe on `/api/health`. A `status: "ok"` response means
-  the process is alive; `real.configured` is a configuration flag, not proof that
-  Firebase or Supabase accept the credentials.
-- Keep one instance minimum if you rely on demo state. The demo is per-process
-  and resets on restart by design.
-- Terminate TLS at the platform or reverse proxy, forward `Authorization`
-  unchanged and do not cache `/api/*`.
-
-### Migrations
-
-Apply migrations with the Supabase CLI after linking the project, or with
-`psql` in filename order. Treat a hosted migration as a reviewed deployment
-step, not a build hook.
-
-A deployment exists at **https://ith.relaymap.io**; it has not been independently
-verified from this repository. No CI pipeline or deployment badge is claimed.
+The image uses Node 22 Alpine, activates pnpm 10.11.0, builds the standalone Next.js output and runs as a non-root user. Runtime secrets are provided through environment variables, not baked into the image.
 
 ## Security and privacy
 
-| Boundary | Trusted | Never trusted |
-|---|---|---|
-| Browser → API | A Firebase ID token, verified server-side | UID, email, organisation id, project id, role or clearance in the body |
-| API → Firebase Admin | Google's signature and audience check | Client-reported verification state |
-| API → Supabase | The caller's own token | A service-role bypass for user requests |
-| Database → application | RLS and security-definer functions | Application-level checks alone |
-| Storage → application | Path-derived project policies | File-name claims or client MIME type alone |
+| Boundary | Security model |
+|---|---|
+| Browser → API | Firebase ID token is verified server-side. Client-supplied user, organisation, project, role and clearance values are not trusted. |
+| API → Supabase | A request-scoped client forwards the caller's Firebase token. |
+| Database | PostgreSQL RLS enforces organisation and project boundaries. |
+| Finance visibility | Finance sources and claims citing them are filtered for users without finance clearance. |
+| Storage | Source bucket is private; access is derived from organisation/project path segments. |
+| Handover | Published versions are snapshots; acknowledgement is tied to an exact version. |
 
-Implemented protections:
+Other implemented controls include upload allow-lists, PDF/DOCX file-signature checks, a 2 MiB upload limit, a 500,000-character extraction limit, `Cache-Control: no-store` on API responses, and safe database error responses.
 
-- Firebase is the only end-user identity provider; every `/api/app/*` request is
-  verified server-side.
-- Identity and membership are derived from the verified token and the database.
-  Request bodies cannot choose their own role.
-- PostgreSQL RLS isolates organisations and projects. The service layer cannot
-  cross a tenant boundary on its own.
-- Finance sources and claims citing them are redacted before assembly for roles
-  without finance clearance.
-- The source bucket is private. Downloads use short-lived signed URLs.
-- Uploads are limited to 2 MiB and 500,000 characters, with allow-listed
-  extensions and file-signature checks for PDF and DOCX.
-- API responses set `Cache-Control: no-store` and an `x-request-id`; database
-  errors are not echoed to the browser.
-- Reviews are append-only; published handover versions are immutable snapshots.
-- Tokens, private keys and raw verification errors are never logged.
+### Security gaps
 
-Not implemented: a Content-Security-Policy, application-level rate limiting,
-CAPTCHA or bot protection, a WAF, per-tenant quotas and automated secret
-scanning. These must be supplied by the hosting platform or added before a public
-launch.
+The current project documentation identifies the following items as not implemented or not independently validated:
 
-> **Never commit secrets.** Do not commit `.env.local`, Firebase Admin
-> service-account JSON, `SUPABASE_SECRET_KEY`, private keys, database passwords
-> or invitation tokens. If a credential is exposed, rotate it, redeploy and
-> revoke the old key. Adding a file to `.gitignore` does not remove it from Git
-> history if it was already committed.
+- Application-level rate limiting, CAPTCHA/bot protection and per-tenant quotas.
+- A Content Security Policy (CSP).
+- A WAF and automated secret scanning.
+- MFA, passkeys and social sign-in.
+- Hosted penetration testing or security certification.
+- Hosted cross-organisation RLS and Storage verification.
 
-## Known limitations and project status
+Do not treat the above as completed security controls. Review deployment configuration and conduct appropriate security testing before an unrestricted public launch.
 
-### Verified locally
+## Known limitations
 
-- Unit and domain tests, type checking, linting and the production build are
-  exercised in this development environment.
-- All 11 migrations apply in order on a disposable PostgreSQL 17.11 database,
-  and the local constraint and RLS assertions pass.
-- The synthetic demo runs without cloud credentials.
-- The standalone server and `/api/health` have been exercised locally.
+- The CampusConnect demo is synthetic and process-local. It resets on process restart and is not shared across multiple server instances.
+- Real-workspace flows require correctly configured Firebase and Supabase projects.
+- Hosted sign-in, hosted RLS, hosted Storage, invitations and cross-tenant isolation have not been verified by the public repository alone.
+- Email verification is optional in this build.
+- Invitation email delivery is not implemented; invitation links need out-of-band delivery.
+- GitHub support consists of schema and server-only library code; there is no user-facing repository connection or analysis UI in this build.
+- No external AI model provider is used. Extraction, Scribe drafting, gap questions and Buddy retrieval are deterministic.
+- Impact analysis is not exposed in the real-workspace UI.
+- Scanned PDFs requiring OCR are not processed.
+- Document parsing runs within the request; there is no background job runner.
+- Account deletion and user data export workflows are not implemented.
+- The public repository does not include the local `documentation/` implementation notes or a tracked Playwright configuration.
 
-### Requires external configuration
+## Roadmap
 
-- Firebase Authentication, Firebase Admin token verification and custom-claim
-  provisioning require a Firebase project.
-- The real workspace requires a hosted Supabase project with all migrations
-  applied and Firebase configured as a third-party auth provider.
-- Private source storage requires the Supabase Storage bucket created by
-  migration 9.
+The following three improvements preserve the original Round 1 roadmap. They are future development directions and should not be interpreted as fully delivered features.
 
-### Not verified
+### 1. GitHub Project Intelligence
 
-- No hosted Firebase sign-in, token verification or invitation flow has been
-  exercised here.
-- No hosted Supabase RLS, PostgREST, Storage or GoTrue behaviour has been
-  verified here.
-- No cross-organisation test has been run against a hosted project.
-- No Docker image has been built or run in this environment.
-- No independent penetration test or dependency audit report is included.
+- Authorised repository connection.
+- Contributor activity analysis.
+- Knowledge concentration analysis.
+- Open pull requests and unfinished work.
+- Cited technical explanations.
+- Project knowledge-risk radar.
 
-### Known gaps
+### 2. Decision Impact Knowledge Graph
 
-- Email verification is optional; an unverified address can create a workspace.
-  Re-enable the verifier gate before accepting untrusted public sign-ups.
-- Invitation email delivery is not implemented. The one-time link must be
-  delivered out of band.
-- GitHub integration is schema and library only; there is no user-facing route.
-- No AI provider is present. Extraction, questions and retrieval are
-  deterministic and deliberately limited.
-- The demo is process-local; multiple instances do not share state.
-- No account deletion or data export workflow.
-- No MFA, passkeys or social sign-in.
-- No background job runner; parsing happens inside the request.
-- No Content-Security-Policy and no application-level rate limiting.
-- Some internal documents refer to a `VERIFICATION.md` that is not part of this
-  repository.
-- `supabase/config.toml` is not included, so the CLI workflow assumes a linked
-  project.
+- Connected decision/task graph.
+- Dependency traversal.
+- Supersession tracking.
+- Downstream impact analysis.
+- Interactive knowledge map.
 
-**Status:** functional locally, with the real path requiring cloud
-configuration. This project does not claim production readiness.
+### 3. Intelligent Guided Handover
 
-## License and contributors
+- Interviewer workflow.
+- Evidence-verifying Scribe.
+- Incoming-member Buddy.
+- Gap-driven clarification.
+- Grounded handover Q&A.
+- Knowledge verification and improved readiness.
 
-Released under the [MIT License](LICENSE).
+## Team
+
+**BHAKARWADI** · CodersInPune Hackathon 2026 · Organised by HackWithPune
+
+| Member | Role |
+|---|---|
+| Jayesh Jadhav | Team Leader |
+| Omkar Bhagat | Team Member |
+| Atharva Gaikwad | Team Member |
+| Amol Sable | Team Member |
+
+## License
+
+RELAYMAP is released under the [MIT License](LICENSE).
 
 Copyright (c) 2026 Relay contributors.
 
-The local development tree also contains the Unslop design skill by Damir
-Sokolovsky ("heydamir"), used under CC BY 4.0. It is excluded from this
-repository and retains its own licence and citation files.
+---
+
+<p align="center">
+  <strong>Leave the project. Not the knowledge.</strong><br>
+  <em>RELAYMAP — Don't just transfer files. Transfer understanding.</em>
+</p>
